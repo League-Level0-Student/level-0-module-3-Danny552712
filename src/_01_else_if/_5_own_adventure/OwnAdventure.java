@@ -10,6 +10,8 @@ public class OwnAdventure{
 		//start of the story text and set up stats
 		int playerHealth = 100;
 		int enemyHealth = 100;
+		int enemyAttack = 0;
+		int critIndicator = 0;
 		JOptionPane.showMessageDialog(null, "You are on a adventure to find the lost scroll needed to create the perfect cheeseburger. \n It is your job to navigate through the dungeon and find the lost recipe. \n You will have options to pick your next action while traversing through the dungeon.");
 		//starting the adventure, first choice
 		Object[] optionArray = {"Enter the Dungeon", "Gain More Information"};
@@ -30,7 +32,7 @@ public class OwnAdventure{
 			while(loserIndicator == 0) {
 				query = JOptionPane.showOptionDialog(null, "Pick option", null, 0, 1, null, optionArray2, "Slash");
 				//Enemy attack
-				int enemyAttack = new Random().nextInt(15);
+				enemyAttack = new Random().nextInt(15);
 				//Player Attack choice
 				if (query == 0) {
 					enemyHealth = enemyHealth - 10;
@@ -70,47 +72,66 @@ public class OwnAdventure{
 		//Reconfiguring the stats and attacks
 		playerHealth = 100;
 		enemyHealth = 1000;
-		int enemyAttack = 0;
+		int enemyAttackIndicator = 0;
 		int loserIndicator = 0;
-		int critIndicator = 0;
 		optionArray2[0] = "Godly Slashes";
 		optionArray2[1] = "Divine Divider";
 		optionArray2[2] = "Holy Barrier";
-		//Object [] enemyArray = {"Demonic Flames", "Shadow Pool", "Pure Darkness"};	
+		int optionIndicator = 0;
+		Object [] enemyArray = {"Demonic Flames", "Shadow Pool", "Pure Darkness"};	
 		while(loserIndicator == 0) {
+			critIndicator = 0;
+			enemyAttack = 0;
 			query = JOptionPane.showOptionDialog(null, "Pick option", null, 0, 1, null, optionArray2, "Godly Slashes");
 			int enemyAttackChoice = new Random().nextInt(101);
 			if(enemyAttackChoice >= 90) {
 			//Pure Darkness
 				enemyHealth = enemyHealth + (enemyHealth/10);
-				enemyAttack = new Random(20).nextInt(61);
+				enemyAttack = new Random(50).nextInt(91);
+				enemyAttackIndicator = 2;
 			} else if (enemyAttackChoice >= 70) {
 			//Shadow Pool
 				enemyHealth = enemyHealth + (enemyHealth/20);
-				enemyAttack = new Random(10).nextInt(31);
+				enemyAttack = new Random(20).nextInt(41);
+				enemyAttackIndicator = 1;
 			} else {
 			//Demonic Flames
-				enemyAttack = new Random(10).nextInt(21);
+				enemyAttack = new Random(15).nextInt(31);
+				enemyAttackIndicator = 0;
 			}
 			if(query == 0) {
+				//Godly Slashes
 				int slashesDamage = new Random().nextInt(16);
+				//Critical
 				if(new Random().nextInt(101)>= 75) {
 					slashesDamage = slashesDamage*2;
 					critIndicator = 1;
 				}
 				enemyHealth = enemyHealth - (8*(slashesDamage));
+				optionIndicator = 0;
 			} else if (query == 1) {
+				//Divine Divider
 				int beamDamage = new Random().nextInt(6);
+				//Critical
 				if(new Random().nextInt(101)>= 75) {
 					beamDamage = beamDamage*2;
 					critIndicator = 1;
 				}
 				enemyHealth = enemyHealth - (50*(beamDamage));
+				optionIndicator = 1;
 			} else if (query == 2) {
+				//Holy Barrier
 				enemyAttack = 5;
 				int barrierDamage = new Random().nextInt(5);
 				enemyHealth = enemyHealth-barrierDamage;
+				optionIndicator = 2;
 			}
+			playerHealth = playerHealth - enemyAttack;
+			JOptionPane.showMessageDialog(null, "The Necroking used " + enemyArray[enemyAttackIndicator] + "\n You used " + optionArray2[optionIndicator]);
+			if(critIndicator == 1) {
+				JOptionPane.showMessageDialog(null, "Critical Hit!");
+			}
+			JOptionPane.showMessageDialog(null, "Player Health: " + playerHealth + "\n Enemy Health: " + enemyHealth);
 			if(enemyHealth <= 0) {
 				JOptionPane.showMessageDialog(null, "You did it, the ruler of under has been "
 						+ "defeated, as you saw him fall, he turned into a scroll.\n"
@@ -120,13 +141,19 @@ public class OwnAdventure{
 						+ "Timmy: Use... Your ... Sword... \n With this you reach for your sword"
 						+ "place it on the gaping wound. Then like magic the wound seals and Timmy is brought back to life."
 						+ "Overjoyed you both hop on one foot back to the entrance of the dungeon."
-						+ "You then ask ... \n You: How did you know the sword will heal you? \n he responds...\n"
+						+ " You then ask ... \n You: How did you know the sword will heal you? \n he responds...\n"
 						+ "Timmy: I didn't know I just wanted to die while hugging a sword. \n Concluding your legend of conquering the dungeon with Timmy Bobby Joe.");
 				System.exit(0);
 			} else if (playerHealth <= 0) {
-				
-				
+				JOptionPane.showMessageDialog(null, "As soon as you are impaled by the blade of the Nercoking, \n"
+						+ "you take your last breaths and see Timmy's dead body. You feel anger inside of you \n"
+						+ "as the anger builds the sword starts dissolving. You have unlocked a new ability, P̢͇̥̩̠͆́l̖̲̯̼̲͎̮̹̂͂̌̃͢o͈̣͓̙͈̰̎́ṭ͙̮͍̝̫͓͔̉̃ͯ̕ ̲̜̟̄̈́͞A̫͔̝̖̩̯ͩͫ̂̽͘r̨͇̜ͭ͆̈́m̶̦̪͓̱̙ͣo̵̼͎̯̥̼̺͕͗̑ŗ̹̜̱͍ͭ");
+				JOptionPane.showMessageDialog(null, "Get ready for round 2.");
+				JOptionPane.showMessageDialog(null, "You get ready for a second round.... However the new ability was too strong, you overdosed with \n plot armor and died.");
+				JOptionPane.showMessageDialog(null, "You lose.");
+				System.exit(0);
 			}
+			
 		}
 	}
 }
