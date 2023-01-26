@@ -131,6 +131,7 @@ public class OwnAdventure{
 			if(critIndicator == 1) {
 				JOptionPane.showMessageDialog(null, "Critical Hit!");
 			}
+			//JOptionPane.showMessageDialog(null, "You dealt " + playerHealth + "\n The enemy dealt " + enemyHealth);
 			JOptionPane.showMessageDialog(null, "Player Health: " + playerHealth + "\n Enemy Health: " + enemyHealth);
 			if(enemyHealth <= 0) {
 				JOptionPane.showMessageDialog(null, "You did it, the ruler of under has been "
