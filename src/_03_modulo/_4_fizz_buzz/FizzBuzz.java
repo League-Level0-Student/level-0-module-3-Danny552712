@@ -21,6 +21,21 @@ package _03_modulo._4_fizz_buzz;
 **/
 
 public class FizzBuzz {
-
+	public static void main(String[] args){
+		
+String finalMessage = "";
+		
+		for(int i = 1; i <= 20; i++) {
+			if(i%3 == 0 && i%5 == 0) {
+				finalMessage = finalMessage + "fizzbuzz ";
+			} else if (i%5 == 0) {
+				finalMessage = finalMessage + "buzz ";
+			} else if (i%3 == 0) {
+				finalMessage = finalMessage + "fizz ";
+			} else {
+				finalMessage = finalMessage + i + " ";
+	}
 }
-
+		System.out.print(finalMessage +"");
+}
+	}
