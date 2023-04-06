@@ -12,8 +12,18 @@ public class DizzyRobot {
 		// 1. Use the dance method below to make the robot spin.	
 		dance(1);
 		// 2. Ask the user how dizzy you want the robot from 1-10, then spin that number of times.
-	String spinAmount = JOptionPane.showInputDialog(null, "How dizzy do you want the rbot to be from 1-10?");
+	String spinAmount = JOptionPane.showInputDialog(null, "How dizzy do you want the robot to be from 1-10?");
 	int spinAmountInt = Integer.parseInt(spinAmount);
+	int looper = 0;
+	while (looper ==0) {
+	if (spinAmountInt > 10 || spinAmountInt <1) {
+		JOptionPane.showMessageDialog(null, "Choose a number between 1-10");
+		spinAmount = JOptionPane.showInputDialog(null, "How dizzy do you want the robot to be from 1-10?");
+		spinAmountInt = Integer.parseInt(spinAmount);
+	} else {
+		looper++;
+	}
+	}
 	dance(spinAmountInt);
 
 	}
